@@ -1,6 +1,11 @@
 # WyvernAPI
 > A modding API for TrainMurderMystery (aka Harpy Express or TMM)
 
+> [!WARNING]
+> This project is actively under development and not suitable for use yet. <br>
+> Feel free to preview and contribute, but i do not have the api available on a repository yet for modding.
+
+
 This API sets out to simplify the modding process of TMM, making it easier to make custom roles, tasks, shops/shop items, and win conditions.
 
 Wyvern additionally acts as a TMM utility mod, giving server owners more control over how the game plays and its balanced while also providing useful quality of life features for players. 
@@ -18,6 +23,8 @@ Once you've created your task, simply run:
 For examples, look at the default tasks inside Wyvern.
 
 ## Translations Guide:
+> [!WARNING]
+> This guide is out of date and wont be updated until I start making proper docs.
 Wyvern uses custom translations to make things more extensible, heres how they're set up.
 
 **Roles** require 4 translations.
