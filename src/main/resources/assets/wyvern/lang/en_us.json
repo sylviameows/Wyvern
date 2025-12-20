@@ -1,0 +1,41 @@
+{
+  "wyvern.roles.welcome": "Welcome aboard %s!",
+
+  "wyvern.tasks.real": "You feel like %s",
+  "wyvern.tasks.fake": "You could fake %s",
+
+  "wyvern.task.drink": "getting a drink.",
+  "wyvern.task.eat": "getting a snack.",
+  "wyvern.task.outside": "getting some fresh air.",
+  "wyvern.task.sleep": "getting some sleep.",
+
+  "wyvern.role.civilian.name": "Civilian",
+  "wyvern.role.civilian.team": "Civilians",
+  "wyvern.role.civilian.goal": "Stay safe and survive till the end of the ride.",
+
+  "wyvern.role.vigilante.name": "Vigilante",
+  "wyvern.role.vigilante.team": "Vigilantes",
+  "wyvern.role.vigilante.goal": "Eliminate any murderers and protect the civilians.",
+
+  "wyvern.role.jester.name": "Jester",
+
+  "wyvern.role.killer.name": "Killer",
+  "wyvern.role.killer.team": "Killers",
+  "wyvern.role.killer.goal": "Eliminate any murderers and protect the civilians.",
+
+  "wyvern.alignment.passengers.name": "Passengers",
+  "wyvern.alignment.passengers.win": "Passengers Win!",
+  "wyvern.alignment.killers.name": "Killers",
+  "wyvern.alignment.killers.win": "Killers Win!",
+  "wyvern.alignment.other.name": "Neutral",
+  "wyvern.alignment.other.win": "%s Win!",
+
+  "wyvern.result.passengers.time": "The killers ran out of time: the passengers win!",
+  "wyvern.result.passengers.eliminated": "All killers were eliminated: the passengers win!",
+  "wyvern.result.killers.eliminated": "The killers reached their kill count, they win!",
+
+  "command.wyvern.incomplete": "Command is missing arguments.",
+  "command.wyvern.permission": "You dont have permission to do this.",
+  "command.wyvern.nickname.other": "Set %s's nickname to \"%s\"",
+  "command.wyvern.nickname.update": "Your nickname has been set to \"%s\""
+}

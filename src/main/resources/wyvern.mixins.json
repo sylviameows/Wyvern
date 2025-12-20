@@ -1,0 +1,26 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.sylviameows.wyvern.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "PlayerEntityMixin",
+    "RoleAnnouncementTextAccessor",
+    "ServerPlayerEntityMixin",
+    "components.PlayerMoodComponentAccessor",
+    "components.PlayerMoodComponentMixin"
+  ],
+  "client": [
+    "client.TMMClientMixin",
+    "client.render.DrawContextAccessor",
+    "client.render.MoodRendererMixin",
+    "client.render.RoleNameRendererMixin",
+    "client.render.RoundTextRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

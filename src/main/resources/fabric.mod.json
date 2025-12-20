@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "wyvern",
+  "version": "${version}",
+  "name": "WyvernAPI",
+  "description": "Harpy Express (TMM) modding API",
+  "authors": ["sylviameows"],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/wyvern/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.sylviameows.wyvern.client.WyvernClient"
+    ],
+    "main": [
+      "net.sylviameows.wyvern.Wyvern"
+    ],
+    "cardinal-components": [
+      "net.sylviameows.wyvern.components.WyvernComponents"
+    ]
+  },
+  "mixins": [
+    "wyvern.mixins.json"
+  ],
+  "custom": {
+    "cardinal-components": [
+      "wyvern:nickname",
+      "wyvern:result",
+      "wyvern:weights",
+      "wyvern:configuration"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "trainmurdermystery": ">=${tmm_version}"
+  }
+}
