@@ -1,5 +1,9 @@
 package net.sylviameows.wyvern.api.role.options;
 
+/**
+ * Role options are settings that can be modified by players to customize their experience.
+ * Custom role options are to be added.
+ */
 public interface RoleOptions {
 
     /**

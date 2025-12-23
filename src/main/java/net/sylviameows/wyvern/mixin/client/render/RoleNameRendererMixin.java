@@ -1,10 +1,8 @@
 package net.sylviameows.wyvern.mixin.client.render;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.doctor4t.wathe.Wathe;
 import dev.doctor4t.wathe.cca.GameWorldComponent;
 import dev.doctor4t.wathe.client.WatheClient;
-import dev.doctor4t.wathe.client.gui.RoleAnnouncementTexts;
 import dev.doctor4t.wathe.client.gui.RoleNameRenderer;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -15,7 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.MathHelper;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.components.NicknameComponent;
-import net.sylviameows.wyvern.util.Harpy;
+import net.sylviameows.wyvern.util.migration.WatheMigrator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -48,11 +46,11 @@ public class RoleNameRendererMixin {
                 return;
             }
 
-            Role role = Harpy.convertRole(harpy);
+            Role role = WatheMigrator.migrateRole(harpy);
             if (role == null) {
                 roleText = Text.translatable("announcement.title.%s".formatted(harpy.identifier().getPath())).withColor(harpy.color());
             } else {
-                roleText = role.announcement().roleText;
+                roleText = role.announcement().getName();
             }
         } else {
             roleText = null;

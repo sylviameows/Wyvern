@@ -13,7 +13,7 @@ import net.minecraft.util.math.random.Random;
 import net.sylviameows.wyvern.api.WyvernConstants;
 import net.sylviameows.wyvern.WyvernGamemode;
 import net.sylviameows.wyvern.api.mood.MoodHandler;
-import net.sylviameows.wyvern.util.Harpy;
+import net.sylviameows.wyvern.util.migration.WatheMigrator;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -77,7 +77,7 @@ public abstract class PlayerMoodComponentMixin {
     @Inject(method = "setMood", at = @At("HEAD"), cancellable = true)
     private void wyvern$setMood(float mood, CallbackInfo ci) {
         var harpy = GameWorldComponent.KEY.get(this.player.getWorld()).getRole(player);
-        if (harpy != null && Harpy.convertRole(harpy) != null) {
+        if (harpy != null && WatheMigrator.migrateRole(harpy) != null) {
             // this role will use custom handler, thus the "MoodType" is irrelevant.
             this.mood = Math.clamp(mood, 0f, 1f);
 
@@ -90,7 +90,7 @@ public abstract class PlayerMoodComponentMixin {
     private void wyvern$getMood(CallbackInfoReturnable<Float> cir) {
         GameWorldComponent game =  GameWorldComponent.KEY.get(this.player.getWorld());
         var harpy = game.getRole(player);
-        if (harpy != null && Harpy.convertRole(harpy) != null) {
+        if (harpy != null && WatheMigrator.migrateRole(harpy) != null) {
             // this role will use custom handler, thus the "MoodType" is irrelevant.
             if (!game.isRunning()) return;
             cir.setReturnValue(this.mood);

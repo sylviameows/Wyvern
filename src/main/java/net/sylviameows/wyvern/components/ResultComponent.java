@@ -16,7 +16,7 @@ import net.sylviameows.wyvern.api.WyvernAPI;
 import net.sylviameows.wyvern.api.result.WinResult;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.game.roles.CivilianRole;
-import net.sylviameows.wyvern.util.Harpy;
+import net.sylviameows.wyvern.util.migration.WatheMigrator;
 import org.jetbrains.annotations.NotNull;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;
@@ -24,7 +24,6 @@ import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Equivalent of the {@link dev.doctor4t.wathe.cca.GameRoundEndComponent} from Wathe, but to support Wyvern's custom roles and give more control.
@@ -93,7 +92,7 @@ public class ResultComponent implements AutoSyncedComponent {
 
             var harpy = game.getRole(player);
             if (harpy != null) {
-                role = Harpy.convertRole(harpy);
+                role = WatheMigrator.migrateRole(harpy);
             } else {
                 dead = true;
             }

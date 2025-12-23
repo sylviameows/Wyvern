@@ -26,7 +26,7 @@ public final class RoleWin extends WinResult {
 
     @Override
     public Text getDefaultTitle() {
-        return role.announcement().winText;
+        return role.announcement().getWinText();
     }
 
     @Override

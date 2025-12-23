@@ -50,8 +50,8 @@ public abstract class Role {
 
     abstract public RoleOptions defaults(RoleOptions.Builder builder);
 
-    public RoleAnnouncement announcement() {
-        return new RoleAnnouncement(this);
+    public RoleAnnouncements announcement() {
+        return new RoleAnnouncements(this);
     }
 
     // harpy compat:

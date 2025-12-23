@@ -22,7 +22,7 @@ import net.sylviameows.wyvern.api.task.Task;
 import net.sylviameows.wyvern.client.render.DefaultMoodRenderOptions;
 import net.sylviameows.wyvern.client.render.WyvernTaskRenderer;
 import net.sylviameows.wyvern.mixin.components.PlayerMoodComponentAccessor;
-import net.sylviameows.wyvern.util.Harpy;
+import net.sylviameows.wyvern.util.migration.WatheMigrator;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -75,7 +75,7 @@ public abstract class MoodRendererMixin {
 //            float prev = moodRender;
 
             if (game.getRole(player) == null) return;
-            Role role = Harpy.convertRole(game.getRole(player));
+            Role role = WatheMigrator.migrateRole(game.getRole(player));
             if (role == null) return;
 
             MoodRenderOptions options = new DefaultMoodRenderOptions(role, handler, player);

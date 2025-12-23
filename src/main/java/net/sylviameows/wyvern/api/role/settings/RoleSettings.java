@@ -4,6 +4,9 @@ import dev.doctor4t.wathe.api.Role;
 import net.sylviameows.wyvern.api.Alignment;
 import net.sylviameows.wyvern.util.Time;
 
+/**
+ * Role settings determine how the role interacts with other features from wathe and wyvern.
+ */
 public final class RoleSettings {
 
     private int color;

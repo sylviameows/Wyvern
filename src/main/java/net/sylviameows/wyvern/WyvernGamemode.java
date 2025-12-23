@@ -21,7 +21,7 @@ import net.sylviameows.wyvern.components.WeightsComponent;
 import net.sylviameows.wyvern.mixin.components.PlayerMoodComponentAccessor;
 import net.sylviameows.wyvern.payloads.BoardPayload;
 import net.sylviameows.wyvern.game.roles.CivilianRole;
-import net.sylviameows.wyvern.util.Harpy;
+import net.sylviameows.wyvern.util.migration.WatheMigrator;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
@@ -46,7 +46,7 @@ public final class WyvernGamemode extends MurderGameMode {
                 Wyvern.LOGGER.warn("{} was not assigned a role!", player.getName());
                 component.addRole(player, WyvernAPI.roles().getHarpy(CivilianRole.IDENTIFIER));
             }
-            var role = Harpy.convertRole(component.getRole(player));
+            var role = WatheMigrator.migrateRole(component.getRole(player));
             if (role == null) continue;
 
             role.assign(player);
@@ -109,7 +109,7 @@ public final class WyvernGamemode extends MurderGameMode {
         boolean killerAlive = false;
         for (ServerPlayerEntity player : world.getPlayers()) {
             var harpy = game.getRole(player);
-            Role role = Harpy.convertRole(harpy);
+            Role role = WatheMigrator.migrateRole(harpy);
             if (role == null) continue;
 
             if (role.alignment() != Alignment.KILLER) {

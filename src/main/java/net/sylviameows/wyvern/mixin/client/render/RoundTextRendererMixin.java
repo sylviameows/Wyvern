@@ -171,7 +171,7 @@ public class RoundTextRendererMixin {
 
 
             if (entry.role().unique()) {
-                Text roleText = entry.role().announcement().roleText;
+                Text roleText = entry.role().announcement().getName();
                 context.getMatrices().push();
                 context.getMatrices().translate(12, 7, 0);
                 context.getMatrices().scale(0.25f, 0.25f, 1f);

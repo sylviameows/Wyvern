@@ -6,7 +6,7 @@ import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import dev.doctor4t.wathe.client.WatheClient;
 import net.minecraft.entity.player.PlayerEntity;
 import net.sylviameows.wyvern.api.role.Role;
-import net.sylviameows.wyvern.util.Harpy;
+import net.sylviameows.wyvern.util.migration.WatheMigrator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,7 +34,7 @@ public abstract class WatheClientMixin {
 
             int color;
 
-            Role role = Harpy.convertRole(harpy);
+            Role role = WatheMigrator.migrateRole(harpy);
             if (role == null) {
                 color = harpy.color();
             } else {
