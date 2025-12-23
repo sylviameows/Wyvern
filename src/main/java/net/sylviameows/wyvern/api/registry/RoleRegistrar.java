@@ -19,7 +19,7 @@ public interface RoleRegistrar extends Registrar<Role>{
      * @param id the id of the role to get.
      * @return the harpy role.
      */
-    dev.doctor4t.trainmurdermystery.api.Role getHarpy(Identifier id);
+    dev.doctor4t.wathe.api.Role getHarpy(Identifier id);
 
 
 }

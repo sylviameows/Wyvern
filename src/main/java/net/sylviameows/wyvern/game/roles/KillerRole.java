@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.game.roles;
 
-import dev.doctor4t.trainmurdermystery.cca.PlayerShopComponent;
+import dev.doctor4t.wathe.cca.PlayerShopComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.Wyvern;

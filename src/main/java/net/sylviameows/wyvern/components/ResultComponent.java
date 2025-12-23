@@ -1,8 +1,8 @@
 package net.sylviameows.wyvern.components;
 
 import com.mojang.authlib.GameProfile;
-import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
-import dev.doctor4t.trainmurdermystery.game.GameFunctions;
+import dev.doctor4t.wathe.cca.GameWorldComponent;
+import dev.doctor4t.wathe.game.GameFunctions;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Equivalent of the {@link dev.doctor4t.trainmurdermystery.cca.GameRoundEndComponent} from TMM, but to support Wyvern's custom roles and give more control.
+ * Equivalent of the {@link dev.doctor4t.wathe.cca.GameRoundEndComponent} from Wathe, but to support Wyvern's custom roles and give more control.
  */
 public class ResultComponent implements AutoSyncedComponent {
 

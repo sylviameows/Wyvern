@@ -5,7 +5,7 @@ import net.sylviameows.wyvern.api.role.Role;
 
 public interface Harpy {
 
-    static Role convertRole(dev.doctor4t.trainmurdermystery.api.Role harpy) {
+    static Role convertRole(dev.doctor4t.wathe.api.Role harpy) {
         return WyvernAPI.roles().get(harpy.identifier());
     }
 

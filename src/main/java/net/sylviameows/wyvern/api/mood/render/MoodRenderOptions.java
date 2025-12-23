@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.api.mood.render;
 
-import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.api.Alignment;

@@ -11,7 +11,7 @@
     "components.PlayerMoodComponentMixin"
   ],
   "client": [
-    "client.TMMClientMixin",
+    "client.WatheClientMixin",
     "client.render.DrawContextAccessor",
     "client.render.MoodRendererMixin",
     "client.render.RoleNameRendererMixin",

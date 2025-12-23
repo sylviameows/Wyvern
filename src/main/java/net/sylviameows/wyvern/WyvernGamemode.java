@@ -1,9 +1,9 @@
 package net.sylviameows.wyvern;
 
-import dev.doctor4t.trainmurdermystery.cca.*;
-import dev.doctor4t.trainmurdermystery.game.GameConstants;
-import dev.doctor4t.trainmurdermystery.game.GameFunctions;
-import dev.doctor4t.trainmurdermystery.game.MurderGameMode;
+import dev.doctor4t.wathe.cca.*;
+import dev.doctor4t.wathe.game.GameConstants;
+import dev.doctor4t.wathe.game.GameFunctions;
+import dev.doctor4t.wathe.game.gamemode.MurderGameMode;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;

@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.registry;
 
-import dev.doctor4t.trainmurdermystery.api.TMMRoles;
+import dev.doctor4t.wathe.api.WatheRoles;
 import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.api.registry.RoleRegistrar;
 import net.sylviameows.wyvern.api.role.Role;
@@ -20,8 +20,8 @@ public final class RoleRegistry implements RoleRegistrar {
         return roles.get(id);
     }
 
-    public dev.doctor4t.trainmurdermystery.api.Role getHarpy(Identifier id) {
-        return roles.get(id).getHarpy();
+    public dev.doctor4t.wathe.api.Role getHarpy(Identifier id) {
+        return roles.get(id).getWathe();
     }
 
     public Set<Identifier> getIdentifiers() {
@@ -35,7 +35,7 @@ public final class RoleRegistry implements RoleRegistrar {
     @Override
     public boolean register(Role role) {
         roles.put(role.id(), role);
-        TMMRoles.registerRole(role.getHarpy());
+        WatheRoles.registerRole(role.getWathe());
         return true;
     }
 
@@ -43,7 +43,7 @@ public final class RoleRegistry implements RoleRegistrar {
     public boolean unregister(Identifier id) {
         Role removed = roles.remove(id);
         if (removed != null) {
-            TMMRoles.ROLES.remove(removed.getHarpy());
+            WatheRoles.ROLES.remove(removed.getWathe());
             return true;
         }
         return false;

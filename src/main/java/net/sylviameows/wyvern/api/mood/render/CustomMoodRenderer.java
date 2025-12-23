@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.api.mood.render;
 
-import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;

@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.api.mood;
 
-import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;

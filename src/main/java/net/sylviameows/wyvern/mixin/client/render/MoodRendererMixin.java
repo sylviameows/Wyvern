@@ -1,10 +1,10 @@
 package net.sylviameows.wyvern.mixin.client.render;
 
-import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
-import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
-import dev.doctor4t.trainmurdermystery.cca.PlayerPsychoComponent;
-import dev.doctor4t.trainmurdermystery.client.TMMClient;
-import dev.doctor4t.trainmurdermystery.client.gui.MoodRenderer;
+import dev.doctor4t.wathe.cca.GameWorldComponent;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.cca.PlayerPsychoComponent;
+import dev.doctor4t.wathe.client.WatheClient;
+import dev.doctor4t.wathe.client.gui.MoodRenderer;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
@@ -61,7 +61,7 @@ public abstract class MoodRendererMixin {
     @Inject(method = "renderHud", at = @At(value = "HEAD"), cancellable = true)
     private static void wyvern$renderTask(PlayerEntity player, TextRenderer textRenderer, DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci) {
         GameWorldComponent game = GameWorldComponent.KEY.get(player.getWorld());
-        if (game.isRunning() && TMMClient.isPlayerAliveAndInSurvival()) {
+        if (game.isRunning() && WatheClient.isPlayerAliveAndInSurvival()) {
             if (!(game.getGameMode() instanceof WyvernGamemode)) return;
 
             PlayerMoodComponent mood = PlayerMoodComponent.KEY.get(player);

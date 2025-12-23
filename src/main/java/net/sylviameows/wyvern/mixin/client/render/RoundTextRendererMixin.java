@@ -1,11 +1,11 @@
 package net.sylviameows.wyvern.mixin.client.render;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
-import dev.doctor4t.trainmurdermystery.client.TMMClient;
-import dev.doctor4t.trainmurdermystery.client.gui.RoundTextRenderer;
-import dev.doctor4t.trainmurdermystery.game.GameConstants;
-import dev.doctor4t.trainmurdermystery.index.TMMSounds;
+import dev.doctor4t.wathe.cca.GameWorldComponent;
+import dev.doctor4t.wathe.client.WatheClient;
+import dev.doctor4t.wathe.client.gui.RoundTextRenderer;
+import dev.doctor4t.wathe.game.GameConstants;
+import dev.doctor4t.wathe.index.WatheSounds;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
@@ -151,7 +151,7 @@ public class RoundTextRendererMixin {
 
     @Unique
     private static void wyvern$drawPlayer(ResultComponent.PlayerEntry entry, TextRenderer renderer, DrawContext context) {
-        PlayerListEntry playerListEntry = TMMClient.PLAYER_ENTRIES_CACHE.get(entry.profile().getId());
+        PlayerListEntry playerListEntry = WatheClient.PLAYER_ENTRIES_CACHE.get(entry.profile().getId());
         if (playerListEntry != null) {
             Identifier texture = playerListEntry.getSkinTextures().texture();
             if (texture != null) {
@@ -199,7 +199,7 @@ public class RoundTextRendererMixin {
 
                     player.getWorld().playSound(
                             player, player.getX(), player.getY(), player.getZ(),
-                            component.isWinner(player) ? TMMSounds.UI_PIANO_WIN : TMMSounds.UI_PIANO_LOSE,
+                            component.isWinner(player) ? WatheSounds.UI_PIANO_WIN : WatheSounds.UI_PIANO_LOSE,
                             SoundCategory.MASTER, 10f, 1f, player.getRandom().nextLong()
                     );
                 }

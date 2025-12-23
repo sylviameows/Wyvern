@@ -1,8 +1,8 @@
 package net.sylviameows.wyvern.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
-import dev.doctor4t.trainmurdermystery.item.CocktailItem;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.item.CocktailItem;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;

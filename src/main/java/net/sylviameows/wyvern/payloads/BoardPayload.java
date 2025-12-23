@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.payloads;
 
-import dev.doctor4t.trainmurdermystery.client.gui.RoundTextRenderer;
+import dev.doctor4t.wathe.client.gui.RoundTextRenderer;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -13,7 +13,7 @@ import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.role.RoleAnnouncement;
 
 /**
- * Equivalent of the {@link dev.doctor4t.trainmurdermystery.util.AnnounceWelcomePayload} from TMM, but for Wyvern. Using role ID's instead of registered "announcement texts"
+ * Equivalent of the {@link dev.doctor4t.wathe.util.AnnounceWelcomePayload} from Wathe, but for Wyvern. Using role ID's instead of registered "announcement texts"
  * @param role the player's role.
  * @param killers how many killers are aboard.
  */

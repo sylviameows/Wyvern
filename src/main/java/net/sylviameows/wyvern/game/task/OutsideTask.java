@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.game.task;
 
-import dev.doctor4t.trainmurdermystery.TMM;
+import dev.doctor4t.wathe.Wathe;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
@@ -28,7 +28,7 @@ public final class OutsideTask extends TimedTask {
 
     @Override
     public void tick(@NotNull PlayerEntity player) {
-        if (TMM.isSkyVisibleAdjacent(player)) {
+        if (Wathe.isSkyVisibleAdjacent(player)) {
             decrement();
         }
     }

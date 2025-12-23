@@ -1,11 +1,10 @@
 package net.sylviameows.wyvern.mixin.client;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
-import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
-import dev.doctor4t.trainmurdermystery.client.TMMClient;
+import dev.doctor4t.wathe.cca.GameWorldComponent;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.client.WatheClient;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.MathHelper;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.util.Harpy;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,8 +15,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.awt.*;
 
-@Mixin(TMMClient.class)
-public abstract class TMMClientMixin {
+@Mixin(WatheClient.class)
+public abstract class WatheClientMixin {
 
     @Shadow
     public static GameWorldComponent gameComponent;
@@ -27,7 +26,7 @@ public abstract class TMMClientMixin {
         throw new AssertionError();
     }
 
-    @Inject(method = "getInstinctHighlight", at = @At(value = "INVOKE", target = "Ldev/doctor4t/trainmurdermystery/client/TMMClient;isKiller()Z", shift = At.Shift.AFTER), cancellable = true)
+    @Inject(method = "getInstinctHighlight", at = @At(value = "INVOKE", target = "Ldev/doctor4t/wathe/client/WatheClient;isKiller()Z", shift = At.Shift.AFTER), cancellable = true)
     private static void getInstinctHighlight(CallbackInfoReturnable<Integer> cir, @Local(name = "player") PlayerEntity target) {
         if (isPlayerSpectatingOrCreative()) {
             var harpy = gameComponent.getRole(target);

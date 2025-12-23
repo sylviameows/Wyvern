@@ -1,8 +1,8 @@
 package net.sylviameows.wyvern.client.render;
 
-import dev.doctor4t.trainmurdermystery.TMM;
-import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
-import dev.doctor4t.trainmurdermystery.cca.PlayerPsychoComponent;
+import dev.doctor4t.wathe.Wathe;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.cca.PlayerPsychoComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
@@ -37,20 +37,20 @@ public class DefaultMoodRenderOptions implements MoodRenderOptions {
             case KILLER -> {
                 PlayerPsychoComponent psycho = PlayerPsychoComponent.KEY.get(player);
                 if (psycho.getPsychoTicks() > 0) {
-                    // psycho rendering is handled by tmm, so this is only here as a backup.
-                    banner = TMM.id("hud/mood_psycho");
+                    // psycho rendering is handled by Wathe, so this is only here as a backup.
+                    banner = Wathe.id("hud/mood_psycho");
                 }
-                banner = TMM.id("hud/mood_killer");
+                banner = Wathe.id("hud/mood_killer");
 
             }
             case INNOCENT -> {
                 color = null; // handle
                 if (mood.isLowerThanDepressed()) {
-                    banner = TMM.id("hud/mood_depressed");
+                    banner = Wathe.id("hud/mood_depressed");
                 } else if (mood.isLowerThanMid()) {
-                    banner = TMM.id("hud/mood_mid");
+                    banner = Wathe.id("hud/mood_mid");
                 } else {
-                    banner = TMM.id("hud/mood_happy");
+                    banner = Wathe.id("hud/mood_happy");
                 }
             }
             case OTHER ->  {

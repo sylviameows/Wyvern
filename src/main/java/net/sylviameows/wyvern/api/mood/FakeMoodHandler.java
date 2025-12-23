@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.api.mood;
 
-import dev.doctor4t.trainmurdermystery.cca.PlayerMoodComponent;
+import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.task.TaskTypes;

@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.components;
 
-import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
+import dev.doctor4t.wathe.cca.GameWorldComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;

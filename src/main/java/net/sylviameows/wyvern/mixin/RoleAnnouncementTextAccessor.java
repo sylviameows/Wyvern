@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.mixin;
 
-import dev.doctor4t.trainmurdermystery.client.gui.RoleAnnouncementTexts;
+import dev.doctor4t.wathe.client.gui.RoleAnnouncementTexts;
 import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;

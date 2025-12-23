@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.components;
 
-import dev.doctor4t.trainmurdermystery.cca.ScoreboardRoleSelectorComponent;
+import dev.doctor4t.wathe.cca.ScoreboardRoleSelectorComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import org.jetbrains.annotations.NotNull;
 import org.ladysnake.cca.api.v3.entity.EntityComponentFactoryRegistry;

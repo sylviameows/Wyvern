@@ -42,7 +42,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     // tmm aka harpy express
-    modImplementation ("dev.doctor4t:trainmurdermystery:${project.tmm_version}")
+    modImplementation ("dev.doctor4t:wathe:${project.wathe_version}")
 
     // cardinal components
     modImplementation ("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
@@ -57,14 +57,14 @@ processResources {
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
-    inputs.property "tmm_version", project.tmm_version
+    inputs.property "wathe_version", project.wathe_version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version,
                 "minecraft_version": project.minecraft_version,
                 "loader_version": project.loader_version,
-                "tmm_version": project.tmm_version
+                "wathe_version": project.wathe_version
     }
 }
 

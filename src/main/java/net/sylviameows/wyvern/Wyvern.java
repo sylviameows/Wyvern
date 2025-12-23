@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern;
 
-import dev.doctor4t.trainmurdermystery.api.TMMGameModes;
+import dev.doctor4t.wathe.api.WatheGameModes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -41,7 +41,7 @@ public final class Wyvern implements ModInitializer, WyvernAPI {
         LOGGER.info("Setting up Wyvern");
         Holder.setInstance(this);
 
-        TMMGameModes.registerGameMode(WyvernGamemode.IDENTIFIER, new WyvernGamemode());
+        WatheGameModes.registerGameMode(WyvernGamemode.IDENTIFIER, new WyvernGamemode());
 
         // payloads
         PayloadTypeRegistry.playS2C().register(BoardPayload.ID, BoardPayload.CODEC);
@@ -51,7 +51,7 @@ public final class Wyvern implements ModInitializer, WyvernAPI {
             NicknameCommand.register(dispatcher);
         }));
 
-        // replicate default tmm mode.
+        // replicate default Wathe mode.
         RoleRegistry roles = getRoleRegistry();
         roles.register(new KillerRole());
         roles.register(new VigilanteRole());

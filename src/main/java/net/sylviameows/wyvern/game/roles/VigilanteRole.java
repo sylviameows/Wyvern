@@ -1,6 +1,6 @@
 package net.sylviameows.wyvern.game.roles;
 
-import dev.doctor4t.trainmurdermystery.index.TMMItems;
+import dev.doctor4t.wathe.index.WatheItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -20,7 +20,7 @@ public final class VigilanteRole extends Role {
 
     @Override
     public void assign(PlayerEntity player) {
-        player.giveItemStack(new ItemStack(TMMItems.REVOLVER));
+        player.giveItemStack(new ItemStack(WatheItems.REVOLVER));
     }
 
     @Override

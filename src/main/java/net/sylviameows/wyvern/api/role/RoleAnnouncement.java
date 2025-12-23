@@ -1,11 +1,12 @@
 package net.sylviameows.wyvern.api.role;
 
-import dev.doctor4t.trainmurdermystery.client.gui.RoleAnnouncementTexts;
+import dev.doctor4t.wathe.client.gui.RoleAnnouncementTexts;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.api.Alignment;
 import net.sylviameows.wyvern.api.result.WinResult;
+import net.sylviameows.wyvern.mixin.RoleAnnouncementTextAccessor;
 
 public class RoleAnnouncement extends RoleAnnouncementTexts.RoleAnnouncementText {
     private final Role role;

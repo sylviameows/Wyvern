@@ -50,21 +50,21 @@ public abstract class Role {
 
     // harpy compat:
 
-    private dev.doctor4t.trainmurdermystery.api.Role harpy;
-    public final dev.doctor4t.trainmurdermystery.api.Role getHarpy() {
-        if (harpy == null) {
-            this.harpy = new dev.doctor4t.trainmurdermystery.api.Role(
+    private dev.doctor4t.wathe.api.Role wathe;
+    public final dev.doctor4t.wathe.api.Role getWathe() {
+        if (wathe == null) {
+            this.wathe = new dev.doctor4t.wathe.api.Role(
                     id,
                     color,
                     alignment == Alignment.INNOCENT,
                     alignment == Alignment.KILLER,
-                    dev.doctor4t.trainmurdermystery.api.Role.MoodType.NONE,
+                    dev.doctor4t.wathe.api.Role.MoodType.NONE,
                     -1,
                     alignment == Alignment.KILLER
             );
         }
 
-        return harpy;
+        return wathe;
     }
 
 

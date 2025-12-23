@@ -1,11 +1,11 @@
 package net.sylviameows.wyvern.mixin.client.render;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import dev.doctor4t.trainmurdermystery.TMM;
-import dev.doctor4t.trainmurdermystery.cca.GameWorldComponent;
-import dev.doctor4t.trainmurdermystery.client.TMMClient;
-import dev.doctor4t.trainmurdermystery.client.gui.RoleAnnouncementTexts;
-import dev.doctor4t.trainmurdermystery.client.gui.RoleNameRenderer;
+import dev.doctor4t.wathe.Wathe;
+import dev.doctor4t.wathe.cca.GameWorldComponent;
+import dev.doctor4t.wathe.client.WatheClient;
+import dev.doctor4t.wathe.client.gui.RoleAnnouncementTexts;
+import dev.doctor4t.wathe.client.gui.RoleNameRenderer;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -39,9 +39,9 @@ public class RoleNameRendererMixin {
         return nickname.get();
     }
 
-    @Inject(method = "renderHud", at = @At(value = "INVOKE", target = "Ldev/doctor4t/trainmurdermystery/cca/GameWorldComponent;canUseKillerFeatures(Lnet/minecraft/entity/player/PlayerEntity;)Z", ordinal = 0))
+    @Inject(method = "renderHud", at = @At(value = "INVOKE", target = "Ldev/doctor4t/wathe/cca/GameWorldComponent;canUseKillerFeatures(Lnet/minecraft/entity/player/PlayerEntity;)Z", ordinal = 0))
     private static void wyvern$getRoleText(TextRenderer renderer, ClientPlayerEntity player, DrawContext context, RenderTickCounter tickCounter, CallbackInfo ci, @Local(name = "target") PlayerEntity target, @Local(name = "component") GameWorldComponent game) {
-        if (TMMClient.isPlayerSpectatingOrCreative()) {
+        if (WatheClient.isPlayerSpectatingOrCreative()) {
             var harpy = game.getRole(target);
             if (harpy == null) {
                 roleText = null;
