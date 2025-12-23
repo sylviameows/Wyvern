@@ -5,20 +5,19 @@ import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.api.Alignment;
 import net.sylviameows.wyvern.api.mood.MoodHandler;
 import net.sylviameows.wyvern.api.role.options.RoleOptions;
+import net.sylviameows.wyvern.api.role.settings.RoleSettings;
 
 public abstract class Role {
     private final Identifier id;
-    private final Alignment alignment;
-    private final int color;
+    protected final RoleSettings settings;
 
     protected Role(Identifier id, Alignment alignment, int color) {
         this.id = id;
-        this.alignment = alignment;
-        this.color = color;
+        this.settings = new RoleSettings(color, alignment);
     }
 
     public MoodHandler getMoodHandler() {
-        return alignment.mood(this);
+        return settings.getAlignment().mood(this);
     }
 
     public abstract void assign(PlayerEntity player);
@@ -27,12 +26,19 @@ public abstract class Role {
         return id;
     }
 
+    /**
+     * Gets the role settings instance;
+     */
+    public RoleSettings settings() {
+        return settings;
+    }
+
     public Alignment alignment() {
-        return alignment;
+        return settings.getAlignment();
     }
 
     public int color() {
-        return color;
+        return settings.getColor();
     }
 
     /**
@@ -55,12 +61,12 @@ public abstract class Role {
         if (wathe == null) {
             this.wathe = new dev.doctor4t.wathe.api.Role(
                     id,
-                    color,
-                    alignment == Alignment.INNOCENT,
-                    alignment == Alignment.KILLER,
-                    dev.doctor4t.wathe.api.Role.MoodType.NONE,
-                    -1,
-                    alignment == Alignment.KILLER
+                    settings.getColor(),
+                    settings.isInnocent(),
+                    settings.canUseKiller(),
+                    dev.doctor4t.wathe.api.Role.MoodType.NONE, // Wyvern addons use "MoodHandler" so mood type should be ignored.
+                    settings.getMaxStamina(),
+                    settings.canSeeTime()
             );
         }
 
