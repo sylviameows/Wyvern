@@ -1,0 +1,12 @@
+package net.sylviameows.wyvern.util;
+
+import net.sylviameows.wyvern.api.WyvernAPI;
+import net.sylviameows.wyvern.api.role.Role;
+
+public interface WatheMigrator {
+
+    static Role migrateRole(dev.doctor4t.wathe.api.Role wathe) {
+        return WyvernAPI.roles().get(wathe.identifier());
+    }
+
+}

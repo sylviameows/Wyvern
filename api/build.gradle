@@ -1,0 +1,52 @@
+plugins {
+    id 'fabric-loom' version '1.13-SNAPSHOT'
+    id 'maven-publish'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+repositories {
+
+    // Ladysnake (CCA/TMM)
+    maven {
+        name = 'Ladysnake Mods'
+        url = 'https://maven.ladysnake.org/releases'
+    }
+
+    // Modrinth
+    maven { url "https://api.modrinth.com/maven" }
+
+    // Datasync
+    maven { url = "https://maven.uuid.gg/releases" }
+    maven { url = 'https://maven.maxhenkel.de/repository/public' }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+
+}
+
+dependencies {
+    // To change the versions see the gradle.properties file
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+
+    // tmm aka harpy express
+    modImplementation "dev.doctor4t:wathe:${project.wathe_version}"
+
+    // cardinal components:
+    modImplementation ("org.ladysnake.cardinal-components-api:cardinal-components-base:${project.cca_version}")
+    modImplementation ("org.ladysnake.cardinal-components-api:cardinal-components-world:${project.cca_version}")
+    modImplementation ("org.ladysnake.cardinal-components-api:cardinal-components-entity:${project.cca_version}")
+
+//
+//    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+}
