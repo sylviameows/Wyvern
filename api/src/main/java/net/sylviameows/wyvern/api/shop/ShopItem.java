@@ -9,8 +9,8 @@ import net.sylviameows.wyvern.api.util.Hands;
 public class ShopItem {
 
     private final ItemStack stack;
-    private final int price;
-    private final ShopItem.Type type;
+    private int price;
+    private ShopItem.Type type;
 
     public ShopItem(ItemStack stack, int price, ShopItem.Type type) {
         this.stack = stack;
@@ -26,6 +26,13 @@ public class ShopItem {
     }
     public Type getType() {
         return type;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public boolean purchase(PlayerEntity player) {

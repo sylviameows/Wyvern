@@ -3,6 +3,7 @@ package net.sylviameows.wyvern.api;
 import net.sylviameows.wyvern.api.registry.ResultRegistrar;
 import net.sylviameows.wyvern.api.registry.RoleRegistrar;
 import net.sylviameows.wyvern.api.registry.TaskRegistrar;
+import net.sylviameows.wyvern.api.shop.DefaultShop;
 
 public interface WyvernAPI {
 
@@ -18,11 +19,17 @@ public interface WyvernAPI {
         return WyvernAPI.getInstance().getResultRegistry();
     }
 
+    static DefaultShop defaultShop() {
+        return WyvernAPI.getInstance().getDefaultShop();
+    }
+
     RoleRegistrar getRoleRegistry();
 
     TaskRegistrar getTaskRegistry();
 
     ResultRegistrar getResultRegistry();
+
+    DefaultShop getDefaultShop();
 
     static WyvernAPI getInstance() {
         return Holder.INSTANCE;

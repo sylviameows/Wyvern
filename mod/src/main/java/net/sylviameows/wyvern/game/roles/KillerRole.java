@@ -18,7 +18,8 @@ public final class KillerRole extends Role {
 
     public KillerRole() {
         super(IDENTIFIER, Alignment.KILLER, COLOR);
-        settings.setShop(Shop.DEFAULT);
+
+        settings.setShop(Shop.getDefault());
     }
 
     @Override
