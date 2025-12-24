@@ -17,11 +17,9 @@
   "wyvern.role.vigilante.team": "Vigilantes",
   "wyvern.role.vigilante.goal": "Eliminate any murderers and protect the civilians.",
 
-  "wyvern.role.jester.name": "Jester",
-
   "wyvern.role.killer.name": "Killer",
   "wyvern.role.killer.team": "Killers",
-  "wyvern.role.killer.goal": "Eliminate any murderers and protect the civilians.",
+  "wyvern.role.killer.goal": "Eliminate all civilians before time runs out.",
 
   "wyvern.alignment.passengers.name": "Passengers",
   "wyvern.alignment.passengers.win": "Passengers Win!",
@@ -37,5 +35,6 @@
   "command.wyvern.incomplete": "Command is missing arguments.",
   "command.wyvern.permission": "You dont have permission to do this.",
   "command.wyvern.nickname.other": "Set %s's nickname to \"%s\"",
-  "command.wyvern.nickname.update": "Your nickname has been set to \"%s\""
+  "command.wyvern.nickname.update": "Your nickname has been set to \"%s\"",
+  "wyvern.shop.purchase.failed": "Purchase Failed"
 }

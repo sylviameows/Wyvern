@@ -45,7 +45,7 @@ public class DefaultMoodRenderOptions implements MoodRenderOptions {
             case INNOCENT -> {
                 color = null; // handle
                 if (mood.isLowerThanDepressed()) {
-                    banner = Wathe.id("hud/mood_depressed");
+                    banner = Wathe.id("hud/mood_depressive");
                 } else if (mood.isLowerThanMid()) {
                     banner = Wathe.id("hud/mood_mid");
                 } else {

@@ -76,7 +76,6 @@ public class ResultComponent implements AutoSyncedComponent {
 
     public boolean isWinner(PlayerEntity player) {
         PlayerEntry entry = getEntry(player);
-        Wyvern.LOGGER.info("Entry is {}", entry == null ? "null" : entry.profile.getName());
         if (entry == null || result == null) return false;
 
         return result.isWinner(entry.role, player);

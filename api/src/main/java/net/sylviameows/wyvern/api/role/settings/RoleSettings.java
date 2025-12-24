@@ -2,7 +2,9 @@ package net.sylviameows.wyvern.api.role.settings;
 
 import dev.doctor4t.wathe.api.Role;
 import net.sylviameows.wyvern.api.Alignment;
+import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.api.util.Time;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Role settings determine how the role interacts with other features from wathe and wyvern.
@@ -18,6 +20,8 @@ public final class RoleSettings {
 
     // @TODO("Replace with a custom Instinct setting and Shop API.")
     private boolean canUseKiller;
+
+    private @Nullable Shop shop;
 
     public RoleSettings(int color, Alignment alignment) {
         this.color = color;
@@ -102,6 +106,18 @@ public final class RoleSettings {
      */
     public void setCanSeeTime(boolean showTime) {
         this.canSeeTime = showTime;
+    }
+
+    public boolean hasShop() {
+        return shop != null;
+    }
+
+    public void setShop(@Nullable Shop shop) {
+        this.shop = shop;
+    }
+
+    public @Nullable Shop getShop() {
+        return shop;
     }
 
 }

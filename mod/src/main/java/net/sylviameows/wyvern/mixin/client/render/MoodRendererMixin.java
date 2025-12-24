@@ -100,7 +100,6 @@ public abstract class MoodRendererMixin {
                     if (taskRenderer.tick(options.getText(), tickCounter.getTickDelta(true))) {
                         taskRenderer = null;
                     } else {
-                        Wyvern.LOGGER.info("alpha: {}, offset: {}", taskRenderer.alpha, taskRenderer.offset);
                         context.getMatrices().push();
                         context.getMatrices().translate(0, 10 * taskRenderer.offset, 0);
                         context.drawTextWithShadow(textRenderer, taskRenderer.text, 22, 6, MathHelper.packRgb(1f, 1f, 1f) | ((int) (taskRenderer.alpha * 255) << 24));
@@ -111,7 +110,6 @@ public abstract class MoodRendererMixin {
                     }
                 }
             } else if (taskRenderer != null) {
-                Wyvern.LOGGER.info("c");
                 taskRenderer = null;
             }
 

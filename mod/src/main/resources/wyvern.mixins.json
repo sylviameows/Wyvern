@@ -11,11 +11,14 @@
     "components.PlayerMoodComponentMixin"
   ],
   "client": [
+    "client.ScreenAccessor",
     "client.WatheClientMixin",
     "client.render.DrawContextAccessor",
+    "client.render.LimitedInventoryScreenMixin",
     "client.render.MoodRendererMixin",
     "client.render.RoleNameRendererMixin",
-    "client.render.RoundTextRendererMixin"
+    "client.render.RoundTextRendererMixin",
+    "client.render.StoreRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

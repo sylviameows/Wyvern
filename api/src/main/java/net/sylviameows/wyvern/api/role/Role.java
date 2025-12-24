@@ -22,7 +22,11 @@ public abstract class Role {
 
     public abstract void assign(PlayerEntity player);
 
-    public Identifier id() {
+    public void tick(PlayerEntity player) {
+        // do nothing!
+    }
+
+    public final Identifier id() {
         return id;
     }
 
@@ -33,11 +37,11 @@ public abstract class Role {
         return settings;
     }
 
-    public Alignment alignment() {
+    public final Alignment alignment() {
         return settings.getAlignment();
     }
 
-    public int color() {
+    public final int color() {
         return settings.getColor();
     }
 

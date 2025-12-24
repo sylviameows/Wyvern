@@ -4,14 +4,16 @@ import dev.doctor4t.wathe.api.WatheGameModes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.game.GameResults;
+import net.sylviameows.wyvern.payloads.BoardPayload;
 import net.sylviameows.wyvern.registry.ResultRegistry;
 import net.sylviameows.wyvern.api.WyvernAPI;
 import net.sylviameows.wyvern.registry.RoleRegistry;
 import net.sylviameows.wyvern.registry.TaskRegistry;
 import net.sylviameows.wyvern.commands.NicknameCommand;
-import net.sylviameows.wyvern.payloads.BoardPayload;
+import net.sylviameows.wyvern.payloads.PurchasePayload;
 import net.sylviameows.wyvern.game.roles.CivilianRole;
 import net.sylviameows.wyvern.game.roles.KillerRole;
 import net.sylviameows.wyvern.game.roles.VigilanteRole;
@@ -45,6 +47,8 @@ public final class Wyvern implements ModInitializer, WyvernAPI {
 
         // payloads
         PayloadTypeRegistry.playS2C().register(BoardPayload.ID, BoardPayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(PurchasePayload.ID, PurchasePayload.CODEC);
+        ServerPlayNetworking.registerGlobalReceiver(PurchasePayload.ID, new PurchasePayload.Receiver());
 
         // commands
         CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> {
