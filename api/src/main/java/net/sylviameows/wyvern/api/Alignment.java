@@ -14,8 +14,8 @@ import java.util.function.Function;
  * <i>e.g. A "Jester" role may win by getting killed by an innocent.</i>
  */
 public enum Alignment {
-    INNOCENT(RealMoodHandler::new, "passengers", 0x36E51B),
-    KILLER(FakeMoodHandler::new, "killers", 0xC13838),
+    INNOCENT(RealMoodHandler::new, "passengers", WyvernColors.CIVILIAN),
+    KILLER(FakeMoodHandler::new, "killers", WyvernColors.KILLER),
     OTHER(RealMoodHandler::new, "other", 0xFFFFFF);
 
     private final Function<Role, MoodHandler> generator;
