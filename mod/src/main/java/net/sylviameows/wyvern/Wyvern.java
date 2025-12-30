@@ -6,9 +6,11 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.util.Identifier;
+import net.sylviameows.wyvern.api.instinct.Instinct;
 import net.sylviameows.wyvern.api.shop.DefaultShop;
 import net.sylviameows.wyvern.game.GameResults;
 import net.sylviameows.wyvern.game.WyvernShop;
+import net.sylviameows.wyvern.game.roles.instinct.KillerInstinct;
 import net.sylviameows.wyvern.payloads.BoardPayload;
 import net.sylviameows.wyvern.registry.ResultRegistry;
 import net.sylviameows.wyvern.api.WyvernAPI;
@@ -94,6 +96,11 @@ public final class Wyvern implements ModInitializer, WyvernAPI {
 
     public DefaultShop getDefaultShop() {
         return defaultShop;
+    }
+
+    @Override
+    public Instinct getKillerInstinct() {
+        return new KillerInstinct();
     }
 
 }

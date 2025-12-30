@@ -1,4 +1,4 @@
-package net.sylviameows.wyvern.util;
+package net.sylviameows.wyvern.api.util;
 
 import net.sylviameows.wyvern.api.WyvernAPI;
 import net.sylviameows.wyvern.api.role.Role;

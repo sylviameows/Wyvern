@@ -1,5 +1,6 @@
 package net.sylviameows.wyvern.api;
 
+import net.sylviameows.wyvern.api.instinct.Instinct;
 import net.sylviameows.wyvern.api.registry.ResultRegistrar;
 import net.sylviameows.wyvern.api.registry.RoleRegistrar;
 import net.sylviameows.wyvern.api.registry.TaskRegistrar;
@@ -30,6 +31,8 @@ public interface WyvernAPI {
     ResultRegistrar getResultRegistry();
 
     DefaultShop getDefaultShop();
+
+    Instinct getKillerInstinct();
 
     static WyvernAPI getInstance() {
         return Holder.INSTANCE;

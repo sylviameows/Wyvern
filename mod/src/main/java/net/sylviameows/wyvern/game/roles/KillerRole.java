@@ -6,19 +6,22 @@ import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import net.sylviameows.wyvern.Wyvern;
 import net.sylviameows.wyvern.api.Alignment;
+import net.sylviameows.wyvern.api.WyvernColors;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.role.options.DynamicOptions;
 import net.sylviameows.wyvern.api.role.options.RoleOptions;
 import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.api.util.Time;
+import net.sylviameows.wyvern.game.roles.instinct.KillerInstinct;
 
 public final class KillerRole extends Role {
     public static Identifier IDENTIFIER = Wyvern.id("killer");
-    public static int COLOR = 0xC13838;
+    public static int COLOR = WyvernColors.KILLER;
 
     public KillerRole() {
         super(IDENTIFIER, Alignment.KILLER, COLOR);
 
+        settings.setInstinct(new KillerInstinct());
         settings.setShop(Shop.getDefault());
     }
 

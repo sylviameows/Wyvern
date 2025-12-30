@@ -17,7 +17,7 @@ import net.sylviameows.wyvern.Wyvern;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.api.shop.ShopItem;
-import net.sylviameows.wyvern.util.WatheMigrator;
+import net.sylviameows.wyvern.api.util.WatheMigrator;
 
 /**
  * Equivalent of the {@link dev.doctor4t.wathe.util.StoreBuyPayload} from Wathe, but for Wyvern.

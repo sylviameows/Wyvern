@@ -17,9 +17,8 @@ import net.sylviameows.wyvern.components.WeightsComponent;
 import net.sylviameows.wyvern.game.GameResults;
 import net.sylviameows.wyvern.mixin.components.PlayerMoodComponentAccessor;
 import net.sylviameows.wyvern.payloads.BoardPayload;
-import net.sylviameows.wyvern.payloads.PurchasePayload;
 import net.sylviameows.wyvern.game.roles.CivilianRole;
-import net.sylviameows.wyvern.util.WatheMigrator;
+import net.sylviameows.wyvern.api.util.WatheMigrator;
 
 import java.util.*;
 

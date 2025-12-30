@@ -16,7 +16,7 @@ import net.sylviameows.wyvern.api.WyvernAPI;
 import net.sylviameows.wyvern.api.result.WinResult;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.game.roles.CivilianRole;
-import net.sylviameows.wyvern.util.WatheMigrator;
+import net.sylviameows.wyvern.api.util.WatheMigrator;
 import org.jetbrains.annotations.NotNull;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.ComponentRegistry;

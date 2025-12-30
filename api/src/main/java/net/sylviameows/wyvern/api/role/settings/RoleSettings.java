@@ -2,6 +2,7 @@ package net.sylviameows.wyvern.api.role.settings;
 
 import dev.doctor4t.wathe.api.Role;
 import net.sylviameows.wyvern.api.Alignment;
+import net.sylviameows.wyvern.api.instinct.Instinct;
 import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.api.util.Time;
 import org.jetbrains.annotations.Nullable;
@@ -22,6 +23,7 @@ public final class RoleSettings {
     private boolean canUseKiller;
 
     private @Nullable Shop shop;
+    private @Nullable Instinct instinct;
 
     public RoleSettings(int color, Alignment alignment) {
         this.color = color;
@@ -106,6 +108,18 @@ public final class RoleSettings {
      */
     public void setCanSeeTime(boolean showTime) {
         this.canSeeTime = showTime;
+    }
+
+    public boolean hasInstinct() {
+        return instinct != null;
+    }
+
+    public void setInstinct(@Nullable Instinct instinct) {
+        this.instinct = instinct;
+    }
+
+    public @Nullable Instinct getInstinct() {
+        return instinct;
     }
 
     public boolean hasShop() {

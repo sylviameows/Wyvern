@@ -6,13 +6,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.Wyvern;
 import net.sylviameows.wyvern.api.Alignment;
+import net.sylviameows.wyvern.api.WyvernColors;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.role.options.DynamicOptions;
 import net.sylviameows.wyvern.api.role.options.RoleOptions;
 
 public final class VigilanteRole extends Role {
     public static Identifier IDENTIFIER = Wyvern.id("vigilante");
-    public static int COLOR = 0x1B8AE5;
+    public static int COLOR = WyvernColors.VIGILANTE;
 
     public VigilanteRole() {
         super(IDENTIFIER, Alignment.INNOCENT, COLOR);

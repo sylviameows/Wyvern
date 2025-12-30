@@ -1,20 +1,28 @@
 package net.sylviameows.wyvern.mixin.client;
 
-import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import com.llamalad7.mixinextras.sugar.Local;
 import dev.doctor4t.wathe.cca.GameWorldComponent;
-import dev.doctor4t.wathe.cca.PlayerMoodComponent;
 import dev.doctor4t.wathe.client.WatheClient;
+import dev.doctor4t.wathe.entity.FirecrackerEntity;
+import dev.doctor4t.wathe.entity.NoteEntity;
+import dev.doctor4t.wathe.entity.PlayerBodyEntity;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.option.KeyBinding;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.sylviameows.wyvern.WyvernGamemode;
+import net.sylviameows.wyvern.api.WyvernColors;
+import net.sylviameows.wyvern.api.instinct.Instinct;
+import net.sylviameows.wyvern.api.instinct.InstinctResult;
+import net.sylviameows.wyvern.api.instinct.Instincts;
 import net.sylviameows.wyvern.api.role.Role;
-import net.sylviameows.wyvern.util.WatheMigrator;
+import net.sylviameows.wyvern.game.roles.instinct.KillerInstinct;
+import net.sylviameows.wyvern.api.util.WatheMigrator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import java.awt.*;
 
 @Mixin(WatheClient.class)
 public abstract class WatheClientMixin {
@@ -27,31 +35,62 @@ public abstract class WatheClientMixin {
         throw new AssertionError();
     }
 
-    @Inject(method = "getInstinctHighlight", at = @At(value = "INVOKE", target = "Ldev/doctor4t/wathe/client/WatheClient;isKiller()Z", shift = At.Shift.AFTER), cancellable = true)
-    private static void getInstinctHighlight(CallbackInfoReturnable<Integer> cir, @Local(name = "player") PlayerEntity target) {
-        if (isPlayerSpectatingOrCreative()) {
-            var harpy = gameComponent.getRole(target);
-            if (harpy == null) return;
+    @Shadow
+    public static KeyBinding instinctKeybind;
 
-            int color;
-
-            Role role = WatheMigrator.migrateRole(harpy);
-            if (role == null) {
-                color = harpy.color();
-            } else {
-                color = role.color();
-            }
-
-            PlayerMoodComponent mood = PlayerMoodComponent.KEY.get(target);
-            float[] hsb = Color.RGBtoHSB((color >> 16) & 0xFF, (color >> 8) & 0xFF, (color & 0xFF), null);
-            if (mood.isLowerThanDepressed()) {
-                hsb[2] = Math.min(hsb[2] * 0.3f, 1f);
-            } else if (mood.isLowerThanMid()) {
-                hsb[2] = Math.min(hsb[2] * 0.6f, 1f);
-            }
-
-            cir.setReturnValue(Color.HSBtoRGB(hsb[0], hsb[1], hsb[2]));
+    @Inject(method = "getInstinctHighlight", at = @At(value = "HEAD"), cancellable = true)
+    private static void getInstinctHighlight(Entity target, CallbackInfoReturnable<Integer> cir) {
+        if (!instinctKeybind.isPressed()) {
+            cir.setReturnValue(-1);
+            return;
         }
+
+        // spectator instinct/qol
+        if (isPlayerSpectatingOrCreative()) {
+            InstinctResult result = null;
+            if (target instanceof PlayerEntity player)
+                result = Instincts.player(player, true);
+            else if (target instanceof ItemEntity || target instanceof NoteEntity || target instanceof FirecrackerEntity)
+                result = new InstinctResult(WyvernColors.ITEM);
+            else if (target instanceof PlayerBodyEntity body) {
+                result = Instincts.body(body, true, true);
+            }
+
+            if (result != null) {
+                cir.setReturnValue(result.color());
+            } else {
+                cir.setReturnValue(-1);
+            }
+
+            return;
+        }
+
+        // role instinct
+        if (gameComponent.getGameMode() instanceof WyvernGamemode) {
+            PlayerEntity self = MinecraftClient.getInstance().player;
+            var wathe = gameComponent.getRole(self);
+            if (wathe == null) {
+                cir.setReturnValue(-1);
+                return;
+            }
+            Role role = WatheMigrator.migrateRole(wathe);
+            if (role == null) {
+                cir.setReturnValue(-1);
+                return;
+            }
+
+            Instinct instinct = role.settings().getInstinct();
+            InstinctResult result = instinct.resolve(target);
+
+            if (result != null) {
+                cir.setReturnValue(result.color());
+            } else {
+                cir.setReturnValue(-1);
+            }
+        }
+
+
+
     }
 
 
