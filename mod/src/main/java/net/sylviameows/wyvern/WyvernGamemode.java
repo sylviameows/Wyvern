@@ -11,6 +11,7 @@ import net.sylviameows.wyvern.api.Alignment;
 import net.sylviameows.wyvern.api.WyvernAPI;
 import net.sylviameows.wyvern.api.result.WinResult;
 import net.sylviameows.wyvern.api.role.Role;
+import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.components.ConfigurationComponent;
 import net.sylviameows.wyvern.components.ResultComponent;
 import net.sylviameows.wyvern.components.WeightsComponent;
@@ -46,6 +47,9 @@ public final class WyvernGamemode extends MurderGameMode {
             if (role == null) continue;
 
             role.assign(player);
+            Shop shop = role.settings().getShop();
+            if (shop != null) PlayerShopComponent.KEY.get(player).setBalance(shop.getStartingBalance());
+
             ((PlayerMoodComponentAccessor) PlayerMoodComponent.KEY.get(player)).wyvern$setMoodHandler(role.getMoodHandler());
             ServerPlayNetworking.send(player, new BoardPayload(role.id(), killerCount));
         }

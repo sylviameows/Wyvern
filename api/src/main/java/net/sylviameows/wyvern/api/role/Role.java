@@ -6,6 +6,7 @@ import net.sylviameows.wyvern.api.Alignment;
 import net.sylviameows.wyvern.api.mood.MoodHandler;
 import net.sylviameows.wyvern.api.role.options.RoleOptions;
 import net.sylviameows.wyvern.api.role.settings.RoleSettings;
+import net.sylviameows.wyvern.api.shop.Shop;
 
 public abstract class Role {
     private final Identifier id;
@@ -23,7 +24,10 @@ public abstract class Role {
     public abstract void assign(PlayerEntity player);
 
     public void tick(PlayerEntity player) {
-        // do nothing!
+        Shop shop = settings().getShop();
+        if (shop != null) {
+            shop.tick(player);
+        }
     }
 
     public final Identifier id() {

@@ -28,7 +28,7 @@ public class DefaultMoodRenderOptions implements MoodRenderOptions {
         this.mood = mood.getMood();
         this.color = role.alignment().color();
 
-        if (handler.getTask() != null) {
+        if (handler != null && handler.getTask() != null) {
             this.text = handler.type().text(handler.getTask());
         }
 

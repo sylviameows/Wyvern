@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.sylviameows.wyvern.api.shop.DefaultShop;
 import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.api.shop.ShopItem;
+import net.sylviameows.wyvern.api.util.Time;
 
 import java.util.function.Consumer;
 
@@ -32,7 +33,8 @@ public class WyvernShop implements DefaultShop {
     );
 
     public WyvernShop() {
-
+        shop.setStartingBalance(100);
+        shop.setTicking(5, Time.getInTicks(0, 10));
     }
 
     @Override
