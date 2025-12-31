@@ -32,9 +32,18 @@
   "wyvern.result.passengers.eliminated": "All killers were eliminated: the passengers win!",
   "wyvern.result.killers.eliminated": "The killers reached their kill count, they win!",
 
+  "category.wyvern.keybinds": "Wyvern",
+
+  "key.wyvern.ability": "Activate Ability",
+  "key.wyvern.settings": "Open Settings",
+  "key.wyvern.nickname": "Change Nickname",
+
   "command.wyvern.incomplete": "Command is missing arguments.",
   "command.wyvern.permission": "You dont have permission to do this.",
-  "command.wyvern.nickname.other": "Set %s's nickname to \"%s\"",
-  "command.wyvern.nickname.update": "Your nickname has been set to \"%s\"",
-  "wyvern.shop.purchase.failed": "Purchase Failed"
+  "command.wyvern.nickname.other": "Set %s's nickname to %s",
+  "command.wyvern.nickname.update": "Your nickname has been set to %s",
+
+  "wyvern.shop.purchase.failed": "Purchase Failed",
+  "wyvern.gui.set": "Set",
+  "screen.wyvern.nickname": "Change Nickname"
 }

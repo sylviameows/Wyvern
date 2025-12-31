@@ -39,8 +39,6 @@ public class NicknameCommand {
     }
 
     private static int setNickname(PlayerEntity player, String nickname, ServerCommandSource source) {
-        NicknameComponent component = NicknameComponent.KEY.get(player);
-
         boolean other = source.getPlayer() == null || !source.getPlayer().equals(player);
 
         if (other && !source.hasPermissionLevel(2)) {
@@ -48,20 +46,30 @@ public class NicknameCommand {
             return 0;
         }
 
-        component.setNickname(nickname);
-        player.sendMessage(Text.translatable("command.wyvern.nickname.update", component.get()));
+        Text text = setNickname(player, nickname);
 
         if (other) {
-            source.sendMessage(Text.translatable("command.wyvern.nickname.other", player.getName().copy().withColor(0xAAAAFF), component.get()));
-        }
-
-        if (player instanceof ServerPlayerEntity serverPlayer) {
-            source.getServer().getPlayerManager().sendToAll(
-                    new PlayerListS2CPacket(PlayerListS2CPacket.Action.UPDATE_DISPLAY_NAME, serverPlayer)
-            );
+            source.sendMessage(Text.translatable("command.wyvern.nickname.other", player.getName().copy().withColor(0xAAAAFF), text.copy().withColor(0xAAAAFF)));
         }
 
         return 1;
+    }
+
+    public static Text setNickname(PlayerEntity player, String nickname) {
+        NicknameComponent component = NicknameComponent.KEY.get(player);
+        component.setNickname(nickname);
+
+        player.sendMessage(Text.translatable("command.wyvern.nickname.update", component.get().copy().withColor(0xAAAAFF)));
+
+        if (player instanceof ServerPlayerEntity serverPlayer) {
+            if (player.getServer() != null) {
+                player.getServer().getPlayerManager().sendToAll(
+                        new PlayerListS2CPacket(PlayerListS2CPacket.Action.UPDATE_DISPLAY_NAME, serverPlayer)
+                );
+            }
+        }
+
+        return component.get();
     }
 
 }

@@ -11,7 +11,7 @@ import net.sylviameows.wyvern.WyvernGamemode;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.api.shop.ShopItem;
-import net.sylviameows.wyvern.client.gui.ShopItemWidget;
+import net.sylviameows.wyvern.client.gui.widgets.ShopItemWidget;
 import net.sylviameows.wyvern.api.util.WatheMigrator;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;

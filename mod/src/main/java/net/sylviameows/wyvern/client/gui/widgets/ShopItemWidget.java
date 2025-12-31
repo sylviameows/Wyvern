@@ -1,4 +1,4 @@
-package net.sylviameows.wyvern.client.gui;
+package net.sylviameows.wyvern.client.gui.widgets;
 
 import dev.doctor4t.wathe.client.gui.screen.ingame.LimitedInventoryScreen;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;

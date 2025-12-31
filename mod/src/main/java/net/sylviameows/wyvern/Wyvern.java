@@ -12,6 +12,7 @@ import net.sylviameows.wyvern.game.GameResults;
 import net.sylviameows.wyvern.game.WyvernShop;
 import net.sylviameows.wyvern.game.roles.instinct.KillerInstinct;
 import net.sylviameows.wyvern.payloads.BoardPayload;
+import net.sylviameows.wyvern.payloads.NicknamePayload;
 import net.sylviameows.wyvern.registry.ResultRegistry;
 import net.sylviameows.wyvern.api.WyvernAPI;
 import net.sylviameows.wyvern.registry.RoleRegistry;
@@ -53,7 +54,9 @@ public final class Wyvern implements ModInitializer, WyvernAPI {
         // payloads
         PayloadTypeRegistry.playS2C().register(BoardPayload.ID, BoardPayload.CODEC);
         PayloadTypeRegistry.playC2S().register(PurchasePayload.ID, PurchasePayload.CODEC);
+        PayloadTypeRegistry.playC2S().register(NicknamePayload.ID, NicknamePayload.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(PurchasePayload.ID, new PurchasePayload.Receiver());
+        ServerPlayNetworking.registerGlobalReceiver(NicknamePayload.ID, new NicknamePayload.Receiver());
 
         // commands
         CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> {
