@@ -18,7 +18,7 @@
 - [Usage](#usage)
 ---
 ## About
-Wyvern has 3 parts, __API__, __Core__, and __Roles__. The __API__ is there to make many modding endeavours with Wathe easier and more extendable for developers to add roles, tasks, shops, and more. __Core__ acts as the mod itself, it injects into TMM and replicates the behaviour with the custom API and provides the registries & methods needed for the API. It also provides QOL features and rendering changes that improve the Wathe experience. Finally, __Roles__ is the custom roles created by us. It's separated from Wyvern itself to make the useful API available without needed our specific curated experience. This section of the project has not yet started development.
+Wyvern has 3 parts, __API__, __Core__, and __Roles__. The __API__ is there to make many modding endeavours with Wathe easier and more extendable for developers to add roles, tasks, shops, and more. __Core__ acts as the mod itself, it injects into TMM and replicates the behaviour with the custom API and provides the registries & methods needed for the API. It also provides QOL features and rendering changes that improve the Wathe experience. Finally, the __Roles__ module contains tailored custom roles built with the API to add variety to your games. This section of the project has not yet started development.
 
 This mod is required on both the client and server for it to work.
 
