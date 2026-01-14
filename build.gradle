@@ -36,6 +36,7 @@ allprojects {
     }
 
     jar {
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
         from("LICENSE") {
             rename { "${it}_${project.archivesBaseName}" }
         }

@@ -1,4 +1,4 @@
-package net.sylviameows.wyvern;
+package net.sylviameows.wyvern.game;
 
 import dev.doctor4t.wathe.cca.*;
 import dev.doctor4t.wathe.game.GameFunctions;
@@ -7,15 +7,16 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
+import net.sylviameows.wyvern.Wyvern;
 import net.sylviameows.wyvern.api.Alignment;
-import net.sylviameows.wyvern.api.WyvernAPI;
+import net.sylviameows.wyvern.api.game.WyvernGame;
+import net.sylviameows.wyvern.api.game.WyvernPlayer;
 import net.sylviameows.wyvern.api.result.WinResult;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.components.ConfigurationComponent;
 import net.sylviameows.wyvern.components.ResultComponent;
 import net.sylviameows.wyvern.components.WeightsComponent;
-import net.sylviameows.wyvern.game.GameResults;
 import net.sylviameows.wyvern.mixin.components.PlayerMoodComponentAccessor;
 import net.sylviameows.wyvern.payloads.BoardPayload;
 import net.sylviameows.wyvern.game.roles.CivilianRole;
@@ -23,9 +24,11 @@ import net.sylviameows.wyvern.api.util.WatheMigrator;
 
 import java.util.*;
 
-public final class WyvernGamemode extends MurderGameMode {
+public final class WyvernGamemode extends MurderGameMode implements WyvernGame {
 
     public static final Identifier IDENTIFIER = Wyvern.id("murder");
+
+    private final Map<UUID, WyvernPlayer> players = new HashMap<>();
 
     public WyvernGamemode() {
         super(IDENTIFIER);
@@ -33,25 +36,26 @@ public final class WyvernGamemode extends MurderGameMode {
 
     @Override
     public void initializeGame(ServerWorld world, GameWorldComponent component, List<ServerPlayerEntity> players) {
-        TrainWorldComponent.KEY.get(world).setTimeOfDay(TrainWorldComponent.TimeOfDay.NIGHT);
+        this.players.clear();
+
+        players.forEach(player -> this.players.put(player.getUuid(), new WyvernPlayerImpl(player)));
+
         WeightsComponent weights = WeightsComponent.KEY.get(world.getScoreboard());
+        int killerCount = weights.assignRoles(this.players.values(), ConfigurationComponent.KEY.get(world));
 
-        int killerCount = weights.assignRoles(players, component, ConfigurationComponent.KEY.get(world));
-
-        for (ServerPlayerEntity player : players) {
-            if (component.getRole(player) == null) {
-                Wyvern.LOGGER.warn("{} was not assigned a role!", player.getName());
-                component.addRole(player, WyvernAPI.roles().getWathe(CivilianRole.IDENTIFIER));
+        for (WyvernPlayer player : this.players.values()) {
+            if (player.role() == null) {
+                player.role(new CivilianRole());
             }
-            var role = WatheMigrator.migrateRole(component.getRole(player));
-            if (role == null) continue;
+            Role role = player.role();
 
-            role.assign(player);
+            role.assign(player.entity());
             Shop shop = role.settings().getShop();
-            if (shop != null) PlayerShopComponent.KEY.get(player).setBalance(shop.getStartingBalance());
 
-            ((PlayerMoodComponentAccessor) PlayerMoodComponent.KEY.get(player)).wyvern$setMoodHandler(role.getMoodHandler());
-            ServerPlayNetworking.send(player, new BoardPayload(role.id(), killerCount));
+            if (shop != null) player.balance(shop.getStartingBalance());
+
+            ((PlayerMoodComponentAccessor) PlayerMoodComponent.KEY.get(player.entity())).wyvern$setMoodHandler(role.getMoodHandler());
+            ServerPlayNetworking.send((ServerPlayerEntity) player.entity(), new BoardPayload(role.id(), killerCount));
         }
     }
 
@@ -96,4 +100,13 @@ public final class WyvernGamemode extends MurderGameMode {
         }
     }
 
+    @Override
+    public WyvernPlayer getPlayer(UUID uuid) {
+        return this.players.get(uuid);
+    }
+
+    @Override
+    public void end(WinResult result) {
+
+    }
 }

@@ -11,7 +11,7 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.random.Random;
 import net.sylviameows.wyvern.api.WyvernConstants;
-import net.sylviameows.wyvern.WyvernGamemode;
+import net.sylviameows.wyvern.game.WyvernGamemode;
 import net.sylviameows.wyvern.api.mood.MoodHandler;
 import net.sylviameows.wyvern.api.util.WatheMigrator;
 import org.spongepowered.asm.mixin.Final;

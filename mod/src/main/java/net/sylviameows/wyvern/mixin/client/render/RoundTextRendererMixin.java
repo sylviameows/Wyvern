@@ -15,7 +15,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
-import net.sylviameows.wyvern.WyvernGamemode;
+import net.sylviameows.wyvern.game.WyvernGamemode;
 import net.sylviameows.wyvern.api.Alignment;
 import net.sylviameows.wyvern.components.ResultComponent;
 import org.spongepowered.asm.mixin.Final;

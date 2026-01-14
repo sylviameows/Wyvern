@@ -9,6 +9,7 @@ import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.api.instinct.Instinct;
 import net.sylviameows.wyvern.api.shop.DefaultShop;
 import net.sylviameows.wyvern.game.GameResults;
+import net.sylviameows.wyvern.game.WyvernGamemode;
 import net.sylviameows.wyvern.game.WyvernShop;
 import net.sylviameows.wyvern.game.roles.instinct.KillerInstinct;
 import net.sylviameows.wyvern.payloads.BoardPayload;

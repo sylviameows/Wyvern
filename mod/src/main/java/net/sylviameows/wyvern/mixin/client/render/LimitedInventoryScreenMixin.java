@@ -7,7 +7,7 @@ import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.text.Text;
-import net.sylviameows.wyvern.WyvernGamemode;
+import net.sylviameows.wyvern.game.WyvernGamemode;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.shop.Shop;
 import net.sylviameows.wyvern.api.shop.ShopItem;

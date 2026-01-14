@@ -45,5 +45,10 @@
 
   "wyvern.shop.purchase.failed": "Purchase Failed",
   "wyvern.gui.set": "Set",
-  "screen.wyvern.nickname": "Change Nickname"
+  "screen.wyvern.nickname": "Change Nickname",
+  "tip.nicknames.disabled": "Nicknames are disabled on this server!",
+  "screen.wyvern.config": "Configuration",
+  "wyvern.gui.enabled": "Enabled",
+  "wyvern.gui.disabled": "Disabled",
+  "wyvern.gui.nicknames": "Nicknames"
 }

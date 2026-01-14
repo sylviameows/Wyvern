@@ -3,7 +3,7 @@ package net.sylviameows.wyvern.mixin.client.render;
 import dev.doctor4t.wathe.cca.GameWorldComponent;
 import dev.doctor4t.wathe.client.gui.StoreRenderer;
 import net.minecraft.entity.player.PlayerEntity;
-import net.sylviameows.wyvern.WyvernGamemode;
+import net.sylviameows.wyvern.game.WyvernGamemode;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.util.WatheMigrator;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,16 +1,16 @@
 package net.sylviameows.wyvern.components;
 
-import dev.doctor4t.wathe.cca.GameWorldComponent;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import net.sylviameows.wyvern.Wyvern;
 import net.sylviameows.wyvern.api.Alignment;
 import net.sylviameows.wyvern.api.WyvernAPI;
+import net.sylviameows.wyvern.api.game.WyvernGame;
+import net.sylviameows.wyvern.api.game.WyvernPlayer;
 import net.sylviameows.wyvern.api.role.Role;
 import net.sylviameows.wyvern.api.role.options.DynamicOptions;
 import net.sylviameows.wyvern.api.role.options.RoleOptions;
@@ -47,17 +47,17 @@ public class WeightsComponent implements AutoSyncedComponent {
         }
     }
 
-    public int assignRoles(List<ServerPlayerEntity> players, GameWorldComponent game, ConfigurationComponent config) {
-        List<PlayerEntity> candidates = new ArrayList<>(players);
+    public int assignRoles(Collection<WyvernPlayer> players, ConfigurationComponent config) {
+        List<WyvernPlayer> candidates = new ArrayList<>(players);
 
-        int killerCount = assignKillers(candidates, game, config);
-        assignOthers(candidates, game, config, killerCount);
-        assignCivilians(candidates, game, config, killerCount);
+        int killerCount = assignKillers(candidates, config);
+        assignOthers(candidates, config, killerCount);
+        assignCivilians(candidates, config, killerCount);
 
         return killerCount;
     }
 
-    public void assignCivilians(List<PlayerEntity> players, GameWorldComponent game, ConfigurationComponent config, int killerCount) {
+    public void assignCivilians(List<WyvernPlayer> players, ConfigurationComponent config, int killerCount) {
         List<Role> roles = WyvernAPI.roles().getRoles().stream().filter(role -> role.alignment() == Alignment.INNOCENT).toList();
 
         List<Role> selectedRoles = new ArrayList<>();
@@ -96,11 +96,11 @@ public class WeightsComponent implements AutoSyncedComponent {
             }
         }
 
-        assignSpecial(players, game, selectedRoles, defaultRole);
+        assignSpecial(players, selectedRoles, defaultRole);
 
     }
 
-    public void assignOthers(List<PlayerEntity> players, GameWorldComponent game, ConfigurationComponent config, int killerCount) {
+    public void assignOthers(List<WyvernPlayer> players, ConfigurationComponent config, int killerCount) {
         List<Role> roles = WyvernAPI.roles().getRoles().stream().filter(role -> role.alignment() == Alignment.OTHER).toList();
 
         List<Role> selectedRoles = new ArrayList<>();
@@ -132,14 +132,14 @@ public class WeightsComponent implements AutoSyncedComponent {
 
         // others selection
         int total = 0;
-        Map<PlayerEntity, Integer> candidates = new HashMap<>();
+        Map<WyvernPlayer, Integer> candidates = new HashMap<>();
         for (var player : players) {
-            int weight = getWeights(player).other();
+            int weight = getWeights(player.entity()).other();
             total += weight;
             candidates.put(player, weight);
         }
 
-        List<PlayerEntity> others = new ArrayList<>();
+        List<WyvernPlayer> others = new ArrayList<>();
         assignAlignment(players, count, total, candidates, others);
 
         if (players.size() < selectedRoles.size()) {
@@ -150,14 +150,14 @@ public class WeightsComponent implements AutoSyncedComponent {
         }
 
         for (Role role : selectedRoles) {
-            PlayerEntity player = assignWeighted(role, players);
+            WyvernPlayer player = assignWeighted(role, players);
             if (player == null) continue;
-            getWeights(player).assign(role);
-            game.addRole(player, WyvernAPI.roles().getWathe(role.id()));
+            getWeights(player.entity()).assign(role);
+            player.role(role);
         }
     }
 
-    public int assignKillers(List<PlayerEntity> players, GameWorldComponent game, ConfigurationComponent config) {
+    public int assignKillers(List<WyvernPlayer> players, ConfigurationComponent config) {
         double calc = players.size() * config.killerRatio;
         if (calc < 1) calc = 1;
         else calc = (int) Math.floor(calc);
@@ -165,14 +165,14 @@ public class WeightsComponent implements AutoSyncedComponent {
 
         // killer selection
         int total = 0;
-        Map<PlayerEntity, Integer> candidates = new HashMap<>();
+        Map<WyvernPlayer, Integer> candidates = new HashMap<>();
         for (var player : players) {
-            int weight = getWeights(player).killer();
+            int weight = getWeights(player.entity()).killer();
             total += weight;
             candidates.put(player, weight);
         }
 
-        List<PlayerEntity> killers = new ArrayList<>();
+        List<WyvernPlayer> killers = new ArrayList<>();
         assignAlignment(players, count, total, candidates, killers);
 
         // role rolling
@@ -209,13 +209,13 @@ public class WeightsComponent implements AutoSyncedComponent {
             }
         }
 
-        assignSpecial(killers, game, selectedRoles, defaultRole);
+        assignSpecial(killers, selectedRoles, defaultRole);
 
         return count;
     }
 
-    private void assignAlignment(List<PlayerEntity> candidates, int alignedCount, int totalWeights, Map<PlayerEntity, Integer> weights, List<PlayerEntity> aligned) {
-        List<PlayerEntity> toRemove = new ArrayList<>();
+    private void assignAlignment(List<WyvernPlayer> candidates, int alignedCount, int totalWeights, Map<WyvernPlayer, Integer> weights, List<WyvernPlayer> aligned) {
+        List<WyvernPlayer> toRemove = new ArrayList<>();
         for (var i = 0; i < alignedCount; i++) {
             int selection = server.getOverworld().getRandom().nextInt(totalWeights);
             for (var entry : weights.entrySet()) {
@@ -235,28 +235,28 @@ public class WeightsComponent implements AutoSyncedComponent {
         });
     }
 
-    private void assignSpecial(List<PlayerEntity> candidates, GameWorldComponent game, List<Role> availableRoles, Role defaultRole) {
+    private void assignSpecial(List<WyvernPlayer> candidates, List<Role> availableRoles, Role defaultRole) {
         for (Role role : availableRoles) {
-            PlayerEntity player = assignWeighted(role, candidates);
+            WyvernPlayer player = assignWeighted(role, candidates);
             if (player == null) continue;
-            getWeights(player).assign(role);
-            game.addRole(player, WyvernAPI.roles().getWathe(role.id()));
+            getWeights(player.entity()).assign(role);
+            player.role(role);
         }
 
         while (!candidates.isEmpty()) {
             if (defaultRole == null) break;
-            PlayerEntity player = candidates.removeFirst();
-            getWeights(player).assign(defaultRole);
-            game.addRole(player, WyvernAPI.roles().getWathe(defaultRole.id()));
+            WyvernPlayer player = candidates.removeFirst();
+            getWeights(player.entity()).assign(defaultRole);
+            player.role(defaultRole);
         }
     }
 
-    private PlayerEntity assignWeighted(Role role, List<PlayerEntity> players) {
+    private WyvernPlayer assignWeighted(Role role, List<WyvernPlayer> players) {
         Wyvern.LOGGER.info("Assigning {} to a player...", role.id());
         int total = 0;
-        Map<PlayerEntity, Integer> candidates = new HashMap<>();
+        Map<WyvernPlayer, Integer> candidates = new HashMap<>();
         for (var player : players) {
-            int weight = getWeights(player).role(role);
+            int weight = getWeights(player.entity()).role(role);
             total += weight;
             candidates.put(player, weight);
         }
@@ -265,9 +265,8 @@ public class WeightsComponent implements AutoSyncedComponent {
         for (var entry : candidates.entrySet()) {
             selection -= entry.getValue();
             if (selection <= 0) {
-                PlayerEntity candidate = entry.getKey();
+                WyvernPlayer candidate = entry.getKey();
                 players.remove(candidate);
-                Wyvern.LOGGER.info("Selected {} as the player.", candidate.getName().toString());
                 return candidate;
             }
         }

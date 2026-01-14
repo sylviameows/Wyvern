@@ -42,12 +42,15 @@ public class NicknameComponent implements AutoSyncedComponent {
     }
 
     public boolean isUnset() {
-        return nickname == null || nickname.equals(player.getName().getString());
+        if (ConfigurationComponent.KEY.get(player.getWorld()).areNicknamesEnabled()) {
+            return nickname == null || nickname.equals(player.getName().getString());
+        }
+        return true;
     }
 
     public Text get() {
         MutableText name = player.getName().copy();
-        if (nickname == null) return name.withColor(color);
+        if (isUnset() || nickname == null) return name.withColor(color);
         return Text.literal(nickname).withColor(color);
     }
 

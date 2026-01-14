@@ -11,7 +11,7 @@ import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.sylviameows.wyvern.WyvernGamemode;
+import net.sylviameows.wyvern.game.WyvernGamemode;
 import net.sylviameows.wyvern.api.mood.MoodHandler;
 import net.sylviameows.wyvern.api.mood.render.CustomMoodRenderer;
 import net.sylviameows.wyvern.api.mood.render.MoodRenderOptions;

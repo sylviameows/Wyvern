@@ -16,7 +16,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.MathHelper;
-import net.sylviameows.wyvern.WyvernGamemode;
+import net.sylviameows.wyvern.game.WyvernGamemode;
 import net.sylviameows.wyvern.api.instinct.Instinct;
 import net.sylviameows.wyvern.api.instinct.InstinctResult;
 import net.sylviameows.wyvern.api.role.Role;

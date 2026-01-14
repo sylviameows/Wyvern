@@ -10,14 +10,14 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.text.Text;
-import net.sylviameows.wyvern.WyvernGamemode;
+import net.sylviameows.wyvern.api.game.WyvernGame;
+import net.sylviameows.wyvern.api.game.WyvernPlayer;
+import net.sylviameows.wyvern.game.WyvernGamemode;
 import net.sylviameows.wyvern.api.WyvernColors;
 import net.sylviameows.wyvern.api.instinct.Instinct;
 import net.sylviameows.wyvern.api.instinct.InstinctResult;
 import net.sylviameows.wyvern.api.instinct.Instincts;
 import net.sylviameows.wyvern.api.role.Role;
-import net.sylviameows.wyvern.client.gui.NicknameScreen;
 import net.sylviameows.wyvern.api.util.WatheMigrator;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -67,32 +67,28 @@ public abstract class WatheClientMixin {
         }
 
         // role instinct
-        if (gameComponent.getGameMode() instanceof WyvernGamemode) {
+        if (gameComponent.getGameMode() instanceof WyvernGame game) {
             PlayerEntity self = MinecraftClient.getInstance().player;
-            var wathe = gameComponent.getRole(self);
-            if (wathe == null) {
-                cir.setReturnValue(-1);
-                return;
-            }
-            Role role = WatheMigrator.migrateRole(wathe);
-            if (role == null) {
-                cir.setReturnValue(-1);
-                return;
-            }
 
-            Instinct instinct = role.settings().getInstinct();
-            InstinctResult result = instinct.resolve(target);
+            WyvernPlayer player = game.getPlayer(self);
+            if (player != null) {
+                Role role = game.getPlayer(self).role();
+                if (role == null) {
+                    cir.setReturnValue(-1);
+                    return;
+                }
 
-            if (result != null) {
-                cir.setReturnValue(result.color());
-            } else {
-                cir.setReturnValue(-1);
+                Instinct instinct = role.settings().getInstinct();
+                if (instinct == null) return;
+                InstinctResult result = instinct.resolve(target);
+
+                if (result != null) {
+                    cir.setReturnValue(result.color());
+                } else {
+                    cir.setReturnValue(-1);
+                }
             }
         }
-
-
-
     }
-
 
 }
